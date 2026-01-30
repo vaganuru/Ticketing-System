@@ -4,7 +4,7 @@ A simple Rails 8 application to manage tickets with full CRUD functionality. Use
 
 ## Table of Contents
 
-- [Prepare Environment](#prepare-environment)  
+- [Setup Instructions](#setup-instructions)  
 - [Ruby Version](#ruby-version)  
 - [System Dependencies](#system-dependencies)  
 - [Configuration](#configuration)  
@@ -14,13 +14,13 @@ A simple Rails 8 application to manage tickets with full CRUD functionality. Use
 - [Ticket Features](#ticket-features)
 - [Deployment Instructions](#deployment-instructions)  
 - [Assumptions](#assumptions)  
-- [Missing](#missing)
+- [Missing Functionalities](#missing-functionalities)
 
 ---
 
-## Prepare Environment
+## Setup Instructions
 
-Run the following commands on **Ubuntu 22.04** to prepare the environment:
+The development environment was set up and tested on Ubuntu 22.04.
 
 ```bash
 sudo apt-get update -qq
@@ -36,6 +36,19 @@ sudo apt-get install -y libkrb5-dev
 sudo apt-get install -y dirmngr gnupg2
 sudo apt-get install -y libmagickwand-dev imagemagick
 sudo apt-get install -y build-essential libssl-dev libreadline-dev zlib1g-dev
+
+curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+curl -sSL https://get.rvm.io | bash -s stable
+source /etc/profile.d/rvm.sh
+echo rvm_autoupdate_flag=2 >> ~/.rvmrc
+rvm reload
+rvm requirements
+
+rvm install ruby-3.3.0
+rvm alias create default ruby-3.3.0
+ruby -v
+which ruby
 ```
 
 ---
@@ -80,7 +93,7 @@ Create and migrate the database:
 ```bash
 rails db:create
 rails db:migrate
-rails db:seed # Run this for default uses and tickets samples
+rails db:seed # Run this for default users and tickets samples
 ```
 
 ---
@@ -146,3 +159,14 @@ PRIORITY_OPTIONS = ["Low", "Medium", "High", "Critical"]
 
 ---
 ## Missing functionalities
+- Sorting:
+Basic column sorting is planned for the tickets index page (e.g., by status, priority, due date).
+
+- Pagination:
+Ticket listing currently displays all records. Pagination would be added to improve performance and usability for larger datasets.
+
+- Automated Tests:
+
+Model tests: Core model validations are covered using RSpec.
+
+Controller / Feature tests (BDD): End-to-end browser tests (e.g., user flows for creating, updating, and deleting tickets) are yet to implement.

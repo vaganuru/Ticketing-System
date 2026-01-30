@@ -1,0 +1,28 @@
+<div class="modal fade" id="showticketModal-<%= ticket.id %>" tabindex="-1" aria-labelledby="ticketModalLabel-<%= ticket.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ticketModalLabel-<%= ticket.id %>">Ticket Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <% if notice %>
+          <p class="text-success"><%= notice %></p>
+        <% end %>
+        <p><strong>Title:</strong> <%= ticket.title %></p>
+        <p><strong>Description:</strong> <%= ticket.description %></p>
+        <p><strong>Status:</strong> <%= ticket.status %></p>
+        <p><strong>Priority:</strong> <%= ticket.priority %></p>
+        <p><strong>Assignee:</strong> <%= ticket.assignee&.full_name %></p>
+        <p><strong>Reporter:</strong> <%= ticket.reporter&.full_name %></p>
+        <p><strong>Due Date:</strong> <%= ticket.due_date %></p>
+        <p><strong>Tags:</strong> <%= ticket.tags %></p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-primary" %>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

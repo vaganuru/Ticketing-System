@@ -1,0 +1,84 @@
+<% content_for :title, "Tickets" %>
+
+<% if notice %>
+  <div class="alert alert-success" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Tickets</h1>
+  <%= link_to "Create Ticket", new_ticket_path, class: "btn btn-primary" %>
+</div>
+<hr>
+<%= form_with url: tickets_path, method: :get, local: true, class: "row g-2 mb-4" do %>
+  <div class="col-md-3">
+    <%= text_field_tag :query,
+                       params[:query],
+                       class: "form-control",
+                       placeholder: "Search" %>
+  </div>
+
+  <div class="col-md-1">
+    <%= submit_tag "Search", class: "btn btn-primary w-100" %>
+  </div>
+
+  <% if params[:query].present? %>
+    <div class="col-md-1">
+      <%= link_to "Clear", tickets_path, class: "btn btn-secondary w-100" %>
+    </div>
+  <% end %>
+<% end %>
+
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="table-dark">
+  <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Title</th>
+    <th scope="col">Description</th>
+    <th scope="col">Status</th>
+    <th scope="col">Priority</th>
+    <th scope="col">Assignee</th>
+    <th scope="col">Reporter</th>
+    <th scope="col">Due Date</th>
+    <th scope="col">Tags</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.id %></td>
+      <td><%= ticket.title %></td>
+      <td><%= truncate(ticket.description, length: 50) %></td>
+      <td>
+        <span class="badge <%= badge_class(ticket.status) %>"><%= ticket.status %></span>
+      </td>
+      <td><%= ticket.priority %></td>
+      <td><%= ticket.assignee&.full_name || "-" %></td>
+      <td><%= ticket.reporter&.full_name || "-" %></td>
+      <td><%= ticket.due_date %></td>
+      <td><%= ticket.tags %></td>
+      <td class="text-nowrap">
+        <%= link_to "View", "#", class: "btn btn-info btn-sm", data: { bs_toggle: "modal", bs_target: "#showticketModal-#{ticket.id}" } %>
+        <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-sm btn-warning me-1" %>
+        <%= link_to "Delete",
+                    ticket,
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "Are you sure you want to delete this ticket?"
+                    },
+                    class: "btn btn-sm btn-danger" %>
+      </td>
+    </tr>
+    <%= render partial: "show", locals: { ticket: ticket } %>
+  <% end %>
+  </tbody>
+</table>
+
+<% if @tickets.blank? %>
+  <p class="alert alert-warning text-center text-muted fst-italic my-4">
+    No records match your search.
+  </p>
+
+<% end %>

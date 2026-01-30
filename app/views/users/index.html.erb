@@ -1,0 +1,38 @@
+<p class="text-success"><%= notice %></p>
+
+<% content_for :title, "Users" %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Users</h1>
+  <%#= link_to "New User", new_user_path, class: "btn btn-primary" %>
+</div>
+
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="table-dark">
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @users.any? %>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="5" class="text-center text-muted py-4">
+        No users found.
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

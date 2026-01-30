@@ -1,0 +1,74 @@
+<%= form_with(model: ticket) do |form| %>
+  <% if ticket.errors.any? %>
+    <div class="text-danger">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+        <% ticket.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, "Title", class: "fw-bold form-label" do %>
+      Title <span class="text-danger">*</span>
+    <% end %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label fw-bold text-dark" %>
+    <%= form.text_area :description, class: "form-control", rows: 3 %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :status, "Status", class: "fw-bold form-label" do %>
+      Status <span class="text-danger">*</span>
+    <% end %>
+    <%= form.select :status, Ticket::STATUS_OPTIONS, { prompt: "Select Status" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :priority, "Priority", class: "fw-bold form-label" do %>
+      Priority <span class="text-danger">*</span>
+    <% end %>
+    <%= form.select :priority, Ticket::PRIORITY_OPTIONS, { prompt: "Select Priority" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :assignee_id, "Assignee", class: "fw-bold form-label" do %>
+      Assignee
+    <% end %>
+    <%= form.collection_select :assignee_id, User.all, :id, :email, { prompt: "Select Assignee" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :reporter_id, "Reporter", class: "fw-bold form-label" do %>
+      Reporter
+    <% end %>
+    <%= form.collection_select :reporter_id, User.all, :id, :email, { prompt: "Select Reporter" }, class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :due_date, "Due date", class: "fw-bold form-label" do %>
+      Due date <span class="text-danger">*</span>
+    <% end %>
+    <%= form.date_field :due_date, class: "form-control", min: Date.today %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :tags, "Tags", class: "form-label" %>
+    <%= form.text_field :tags, class: "form-control", placeholder: "Enter tags separated by comma" %>
+    <small class="form-text text-muted">
+      <i>Example: bug, frontend, urgent</i>
+    </small>
+  </div>
+
+  <div class="mb-3 text-end">
+    <%= link_to "<< Back", tickets_path, class: "btn btn-secondary me-2" %>
+    <%= form.submit btn_name, class: "btn btn-primary" %>
+  </div>
+
+<% end %>

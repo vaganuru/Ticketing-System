@@ -10,11 +10,12 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
+gem "turbo-rails"
+
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.1'
 end
-
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]

@@ -63,11 +63,8 @@
         <%= link_to "View", "#", class: "btn btn-info btn-sm", data: { bs_toggle: "modal", bs_target: "#showticketModal-#{ticket.id}" } %>
         <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-sm btn-warning me-1" %>
         <%= link_to "Delete",
-                    ticket,
-                    data: {
-                      turbo_method: :delete,
-                      turbo_confirm: "Are you sure you want to delete this ticket?"
-                    },
+                    ticket_path(ticket),
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this ticket?" },
                     class: "btn btn-sm btn-danger" %>
       </td>
     </tr>

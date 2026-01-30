@@ -248,6 +248,9 @@ GEM
     thor (1.5.0)
     timeout (0.6.0)
     tsort (0.2.0)
+    turbo-rails (2.0.23)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (1.1.1)
@@ -282,6 +285,7 @@ DEPENDENCIES
   rspec-rails (~> 6.1)
   selenium-webdriver
   sqlite3 (>= 2.1)
+  turbo-rails
 
 BUNDLED WITH
    2.7.2

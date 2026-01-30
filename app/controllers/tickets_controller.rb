@@ -46,6 +46,13 @@ class TicketsController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+        format.html { redirect_to tickets_path}
+    end
+
+  end
+
   # DELETE /tickets/1 or /tickets/1.json
   def destroy
     @ticket.destroy

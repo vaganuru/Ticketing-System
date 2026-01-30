@@ -154,14 +154,12 @@ PRIORITY_OPTIONS = ["Low", "Medium", "High", "Critical"]
 
 ---
 ## Missing functionalities
-- Sorting:
-Basic column sorting is planned for the tickets index page (e.g., by status, priority, due date).
+- **Sorting:**  
+  Basic column sorting is planned for the tickets index page (e.g., by status, priority, due date).
 
-- Pagination:
-Ticket listing currently displays all records. Pagination would be added to improve performance and usability for larger datasets.
+- **Pagination:**  
+  Ticket listing currently displays all records. Pagination would be added to improve performance and usability for larger datasets.
 
-- Automated Tests:
-
-Model tests: Core model validations are covered using RSpec.
-
-Controller / Feature tests (BDD): End-to-end browser tests (e.g., user flows for creating, updating, and deleting tickets) are yet to implement.
+- **Automated Tests:**  
+  - **Model tests:** Core model validations are covered using RSpec.  
+  - **Controller / Feature tests (BDD):** End-to-end browser tests (e.g., user flows for creating, updating, and deleting tickets) are yet to be implemented.

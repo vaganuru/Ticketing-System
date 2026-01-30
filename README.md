@@ -27,15 +27,10 @@ sudo apt-get update -qq
 sudo apt-get install -y apt-utils
 sudo apt-get install -y -qq libsqlite3-dev
 sudo apt-get install -y -qq mysql-client libmysqlclient-dev
-sudo apt-get install -y -qq libpq-dev postgresql-client-common postgresql-client
-sudo apt-get install -y libzmq3-dev
-sudo apt-get install -y nodejs npm
 sudo apt-get install -y git
 sudo apt-get install -y curl
 sudo apt-get install -y libkrb5-dev
-sudo apt-get install -y dirmngr gnupg2
 sudo apt-get install -y libmagickwand-dev imagemagick
-sudo apt-get install -y build-essential libssl-dev libreadline-dev zlib1g-dev
 
 curl -sSL https://rvm.io/mpapis.asc | gpg --import -
 curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -

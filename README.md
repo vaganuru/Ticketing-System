@@ -154,12 +154,12 @@ PRIORITY_OPTIONS = ["Low", "Medium", "High", "Critical"]
 
 ---
 ## Missing functionalities
-- **Sorting:**  
-  Basic column sorting is planned for the tickets index page (e.g., by status, priority, due date).
-
-- **Pagination:**  
-  Ticket listing currently displays all records. Pagination would be added to improve performance and usability for larger datasets.
-
+- **Sorting:**  Basic column sorting is planned for the tickets index page (e.g., by status, priority, due date).
+- **Enhanced Search & Filters:** Support filtering by assignee, reporter, status, priority, and due dates.
+- **UI/UX Improvements:** Refine responsiveness, accessibility, and visual indicators (status/priority badges).
+- **Pagination:**  Ticket listing currently displays all records. Pagination would be added to improve performance and usability for larger datasets.
+- **Authentication & Authorization:** Introduce user authentication and role-based permissions for better access control.
+- **Comments & Activity History:** Track ticket updates, comments, and status changes for better collaboration.
 - **Automated Tests:**  
   - **Model tests:** Core model validations are covered using RSpec.  
   - **Controller / Feature tests (BDD):** End-to-end browser tests (e.g., user flows for creating, updating, and deleting tickets) are yet to be implemented.

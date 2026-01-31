@@ -40,13 +40,19 @@
             <div class="d-flex justify-content-between align-items-start">
               <div>
                 <h5 class="card-title"><%= ticket.title %></h5>
-                <p class="card-subtitle mb-2 text-muted">ID: <%= ticket.id %>
-                  | <span class="badge <%= badge_class(ticket.status) %>">
-                  <%= ticket.status %></span> | Due: <%= ticket.due_date.strftime("%d %B %Y") %></p>
+                <p class="card-subtitle mb-2 text-muted">
+                  ID: <%= ticket.id %> |
+                  <span class="badge <%= badge_class(ticket.status) %>"><%= ticket.status %></span> |
+                  Priority: <strong><%= ticket.priority %></strong> |
+                  Due: <%= ticket.due_date.strftime("%d %B %Y") %>
+                </p>
+                <p class="mb-1">
+                  <strong>Assignee:</strong> <%= ticket.assignee&.full_name || "-" %> |
+                  <strong>Reporter:</strong> <%= ticket.reporter&.full_name || "-" %>
+                </p>
               </div>
               <div>
-                <%= link_to "View", "#", class: "btn btn-info btn-sm me-1",
-                            data: { bs_toggle: "modal", bs_target: "#showticketModal-#{ticket.id}" } %>
+                <%= link_to "View", "#", class: "btn btn-info btn-sm me-1", data: { bs_toggle: "modal", bs_target: "#showticketModal-#{ticket.id}" } %>
                 <%= link_to "Edit", edit_ticket_path(ticket), class: "btn btn-warning btn-sm me-1" %>
                 <%= link_to "Delete",
                             ticket_path(ticket),

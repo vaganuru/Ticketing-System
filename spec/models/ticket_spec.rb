@@ -19,17 +19,20 @@ RSpec.describe Ticket, type: :model do
 
   describe "validations" do
     it "is valid with valid attributes" do
+      Rails.logger.info "is valid with valid attributes"
       ticket = Ticket.new(valid_attributes)
       expect(ticket).to be_valid
     end
 
     it "is invalid without a title" do
+      Rails.logger.info "Is invalid without a title"
       ticket = Ticket.new(valid_attributes.merge(title: nil))
       expect(ticket).not_to be_valid
       expect(ticket.errors[:title]).to include("can't be blank")
     end
 
     it "is invalid with status outside STATUS_OPTIONS" do
+      Rails.logger.info "is invalid with status outside STATUS_OPTIONS"
       ticket = Ticket.new(valid_attributes.merge(status: "Unknown"))
       expect(ticket).not_to be_valid
       expect(ticket.errors[:status]).to include(
@@ -38,6 +41,7 @@ RSpec.describe Ticket, type: :model do
     end
 
     it "is invalid with priority outside PRIORITY_OPTIONS" do
+      Rails.logger.info "is invalid with priority outside PRIORITY_OPTIONS"
       ticket = Ticket.new(valid_attributes.merge(priority: "Urgent"))
       expect(ticket).not_to be_valid
       expect(ticket.errors[:priority]).to include(
@@ -46,6 +50,7 @@ RSpec.describe Ticket, type: :model do
     end
 
     it "is invalid if description exceeds 1000 chars" do
+      Rails.logger.info "Is invalid if description exceeds 1000 chars"
       ticket = Ticket.new(valid_attributes.merge(description: "a" * 1001))
       expect(ticket).not_to be_valid
       expect(ticket.errors[:description]).to include("must not exceed 1000 characters")
@@ -54,17 +59,20 @@ RSpec.describe Ticket, type: :model do
 
   describe "CRUD operations" do
     it "creates a ticket" do
+      Rails.logger.info "Creates a ticket"
       ticket = Ticket.create!(valid_attributes)
       expect(Ticket.find(ticket.id)).to eq(ticket)
     end
 
     it "reads a ticket" do
+      Rails.logger.info "Reads the ticket"
       ticket = Ticket.create!(valid_attributes)
       fetched = Ticket.find(ticket.id)
       expect(fetched.title).to eq("Test Ticket")
     end
 
     it "updates a ticket" do
+      Rails.logger.info "Update a ticket"
       ticket = Ticket.create!(valid_attributes)
       ticket.update!(status: "In Progress", priority: "Medium")
       updated = Ticket.find(ticket.id)
@@ -73,6 +81,7 @@ RSpec.describe Ticket, type: :model do
     end
 
     it "deletes a ticket" do
+      Rails.logger.info "Deletes a ticket"
       ticket = Ticket.create!(valid_attributes)
       expect { ticket.destroy }.to change { Ticket.count }.by(-1)
     end
